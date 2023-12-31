@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+.left_pane{
+    width: 300px;
+    height: 90vh;
+    border-radius: 30px;
+    box-shadow: 10px 20px 20px rgba(0,0,0,0.3);
+    background-color: #1a33d6ff;
+    padding: 30px 0;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    margin-right: 20px;
+}
+.left_pane h1{
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    display: flex; 
+    justify-content: center;
+}
+.userbox{
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+}
+.userbox:hover{
+    background-color: rgb(34, 61, 239);
+}
+.userbox img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: yellow;
+}
+.userbox div p:first-child{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.userbox div p:last-child{
+    font-size: 14px;
+    text-transform: lowercase;
+    letter-spacing: 1.1px;
+}
+.left_pane ul{
+    width: 100%;
+    padding: 20px;
+    list-style: none;
+}
+.left_pane ul li{
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .3s;
+}
+.left_pane ul li:hover{
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
+    background-color: #fff;
+    color: #000
+}
+.list_icons{
+    font-size: 20px;
+    margin-right: 20px;
+}

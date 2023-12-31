@@ -1,0 +1,30 @@
+table{
+    width: 100%;
+    max-height: 450px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid #eee;
+}
+table tr{
+    background-color: #fff;
+    text-align: center;
+    transition: all 0.3s;
+}
+table th{
+    border-bottom: 1px solid #eee;
+}
+table tr th,td{
+    padding: 10px;
+}
+.btn_view{
+    text-align: center;
+    font-weight: 400;
+    color: red;
+    cursor: pointer;
+}
+.btn_action{
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+}
