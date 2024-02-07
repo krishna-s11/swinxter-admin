@@ -5,11 +5,15 @@ import {Routes,Route, useLocation} from "react-router-dom";
 import Home from '../Home/Home';
 import Events from '../Events/Events';
 import Clubs from '../Clubs/Clubs';
+import EventDetails from '../EventDetails/EventDetails';
 
 const RightPane = () => {
   const location = useLocation();
   return (
     <div className='right-pane'>
+        {
+          location.search.includes("event?id=")?<EventDetails/> : null
+        }
         {
           location.search.includes("users")?<ManageUsers/> :null
         }

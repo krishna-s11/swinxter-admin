@@ -1,7 +1,11 @@
 import React from 'react'
 import "./table.css"
+import { useNavigate } from 'react-router'
 
 const Table = ({data,type}) => {
+
+  const navigate = useNavigate();
+
   if(type==="clubs"){
     return(
       <table border={0}>
@@ -48,7 +52,7 @@ const Table = ({data,type}) => {
           return(
             <tr key={i}>
               <td>{i+1}</td>
-              <td>{d.eventName}</td>
+              <td style={{cursor: "pointer", textDecoration: "underline"}}onClick={() => {navigate(`/dashboard?pg=event?id=${d._id}`)}}>{d.eventName}</td>
               <td>{d.userId?.username}</td>
               <td>{d.type}</td>
               <td>{d.Startdate.split("T")[0]} - {d.EndDate.split("T")[0]}</td>
