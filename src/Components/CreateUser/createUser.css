@@ -1,0 +1,48 @@
+.createuser{
+    width: 400px; 
+    height: 600px; 
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+}
+.createuser_header{
+    position: relative;
+}
+.createuser h2{
+    margin: 10px auto;
+    text-align: center;
+}
+.createuser_photobox{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userphoto{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #1a33d6ff;
+}
+.btn_upload{
+    margin-left: 60px;
+    margin-top: 20px;
+}
+.createuser form {
+    margin-top: 20px;
+}
+.form_inputbox{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.form_inputs{
+    margin-top: 10px;
+    padding: 10px;
+}

@@ -38,8 +38,9 @@ const LeftPane = () => {
           <li style={location.search.length===0?activeStyle:null}  onClick={() => navigate("/dashboard")}><MdDashboard className='list_icons' />Dashboard</li> 
           <li style={location.search.includes("events")?activeStyle:null} onClick={() => navigate("/dashboard?pg=events")}><BsCalendar2EventFill className='list_icons'/>Events</li> 
           <li style={location.search.includes("clubs")?activeStyle:null} onClick={() => navigate("/dashboard?pg=clubs")}><FaUsers className='list_icons' />Clubs</li> 
-          <li style={location.search.includes("situationship")?activeStyle:null}><FaUsers className='list_icons' />Situationship</li> 
+          <li style={location.search.includes("situationship")?activeStyle:null} onClick={() => navigate("/dashboard?pg=situationships")}><FaUsers className='list_icons' />Situationship</li> 
           <li style={location.search.includes("users")?activeStyle:null}  onClick={() => navigate("/dashboard?pg=users")} ><FaUsers className='list_icons' />Users</li> 
+          <li style={location.search.includes("admin_members")?activeStyle:null}  onClick={() => navigate("/dashboard?pg=admin_members")} ><FaUsers className='list_icons' />Admin Users</li> 
         </ul>
         <p style={{position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)", cursor: "pointer"}} onClick={() => {navigate("/")} }>Log Out</p>
     </div>

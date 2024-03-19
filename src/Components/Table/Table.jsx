@@ -22,7 +22,7 @@ const Table = ({data,type}) => {
           return(
             <tr key={i}>
               <td>{i+1}</td>
-              <td>{d.clubname}</td>
+              <td style={{cursor: "pointer", textDecoration: "underline"}} onClick={() => {navigate(`/dashboard?type=details?pg=club?id=${d._id}`)}}>{d.clubname}</td>
               <td>{d.owner_name}</td>
               <td>{d.clubtype}</td>
               <td>{d.isverify?"Yes":"No"}</td>
@@ -52,10 +52,41 @@ const Table = ({data,type}) => {
           return(
             <tr key={i}>
               <td>{i+1}</td>
-              <td style={{cursor: "pointer", textDecoration: "underline"}}onClick={() => {navigate(`/dashboard?pg=event?id=${d._id}`)}}>{d.eventName}</td>
+              <td style={{cursor: "pointer", textDecoration: "underline"}} onClick={() => {navigate(`/dashboard?type=details?pg=event?id=${d._id}`)}} >{d.eventName}</td>
               <td>{d.userId?.username}</td>
               <td>{d.type}</td>
               <td>{d.Startdate.split("T")[0]} - {d.EndDate.split("T")[0]}</td>
+              <td>{d.isverify?"Yes":"No"}</td>
+              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view'>Delete</td>
+            </tr>
+          )
+        })
+      }
+      </table>
+    )
+  }
+  if(type==="situationship"){
+    return(
+      <table border={0}>
+      <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Resort</th>
+          <th>Location</th>
+          <th>Dates</th>
+          <th>Verfied</th>
+          <th colSpan={2}>Action</th>
+      </tr>
+      {
+        data && data.map((d,i) => {
+          return(
+            <tr key={i}>
+              <td>{i+1}</td>
+              <td style={{cursor: "pointer", textDecoration: "underline"}} onClick={() => {navigate(`/dashboard?type=details?pg=situationship?id=${d._id}`)}} >{d.name}</td>
+              <td>{d.resort}</td>
+              <td>{d.locationto.display_name}</td>
+              <td>{d.startDate}</td>
               <td>{d.isverify?"Yes":"No"}</td>
               <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'>{d.isverify?"Suspend":"Approve"}</td>
               <td className='btn_view'>Delete</td>
