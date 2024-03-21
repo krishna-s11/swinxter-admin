@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import "./events.css";
 import axios from "axios";
 import Table from '../../Components/Table/Table';
+import DeleteCard from '../../Components/DeleteCard/DeleteCard';
 
 const Events = () => {
     const [events,setEvents] = useState();

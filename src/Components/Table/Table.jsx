@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./table.css"
 import { useNavigate } from 'react-router'
+import DeleteCard from '../DeleteCard/DeleteCard';
+import ApproveCard from '../ApproveCard/ApproveCard';
 
 const Table = ({data,type}) => {
-
+  const [deleteBox, setDeleteBox] = useState(false);
+  const [approveBox, setApproveBox] = useState(false);
+  const [actionType, setActionType] = useState("");
   const navigate = useNavigate();
 
   if(type==="clubs"){
     return(
       <table border={0}>
+        {
+          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+        }
       <tr>
           <th></th>
           <th>Name</th>
@@ -26,8 +33,8 @@ const Table = ({data,type}) => {
               <td>{d.owner_name}</td>
               <td>{d.clubtype}</td>
               <td>{d.isverify?"Yes":"No"}</td>
-              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'>{d.isverify?"Suspend":"Approve"}</td>
-              <td className='btn_view'>Delete</td>
+              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'  onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
         })
@@ -38,6 +45,9 @@ const Table = ({data,type}) => {
   if(type==="events"){
     return(
       <table border={0}>
+        {
+          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+        }
       <tr>
           <th></th>
           <th>Name</th>
@@ -57,8 +67,9 @@ const Table = ({data,type}) => {
               <td>{d.type}</td>
               <td>{d.Startdate.split("T")[0]} - {d.EndDate.split("T")[0]}</td>
               <td>{d.isverify?"Yes":"No"}</td>
-              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'>{d.isverify?"Suspend":"Approve"}</td>
-              <td className='btn_view'>Delete</td>
+              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'
+              onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
         })
@@ -69,6 +80,9 @@ const Table = ({data,type}) => {
   if(type==="situationship"){
     return(
       <table border={0}>
+        {
+          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+        }
       <tr>
           <th></th>
           <th>Name</th>
@@ -88,8 +102,8 @@ const Table = ({data,type}) => {
               <td>{d.locationto.display_name}</td>
               <td>{d.startDate}</td>
               <td>{d.isverify?"Yes":"No"}</td>
-              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'>{d.isverify?"Suspend":"Approve"}</td>
-              <td className='btn_view'>Delete</td>
+              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
         })
@@ -100,6 +114,9 @@ const Table = ({data,type}) => {
   else{
   return (
     <table border={0}>
+      {
+        deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+      }
     <tr>
         <th></th>
         <th>Name</th>
@@ -117,8 +134,8 @@ const Table = ({data,type}) => {
                 <td>{d.Relationship?d.Relationship:"Couple"}</td>
                 <td>Free Plan</td>
                 <td>{d.gender?d.gender:`${d.couple.person1.gender} | ${d.couple.person2.gender}`}</td>
-                <td style={d.isVerify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'>{d.isVerify?"Suspend":"Approve"}</td>
-                <td className='btn_view'>Delete</td>
+                <td style={d.isVerify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isVerify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}} >{d.isVerify?"Suspend":"Approve"}</td>
+                <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
             )
         })

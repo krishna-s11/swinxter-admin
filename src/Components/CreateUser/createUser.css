@@ -9,6 +9,7 @@
     left: 50%;
     transform: translate(-50%,-50%);
     padding: 20px;
+    overflow-y: scroll;
 }
 .createuser_header{
     position: relative;
@@ -45,4 +46,11 @@
 .form_inputs{
     margin-top: 10px;
     padding: 10px;
+}
+.btn_create_user{
+    border: none;
+    background-color: #1a33d6ff;
+    color: #fff;
+    padding: 12px 30px;
+    cursor: pointer;
 }
