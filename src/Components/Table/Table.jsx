@@ -116,7 +116,7 @@ const Table = ({data,type,refresh}) => {
   if(type==="admins"){
     const deleteUser = async (id) => {
       try {
-        const res = await axios.delete(`http://localhost:8080/admin/delete_user/${id}`);
+        const res = await axios.delete(`https://swinxter-test.onrender.com/admin/delete_user/${id}`);
         console.log(res.data);
       } catch (error) {
         console.log(error);

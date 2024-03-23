@@ -9,7 +9,7 @@ const AdminUsers = () => {
     const [users, setUsers] = useState([]);
 
     const fetchData = async () => {
-        const res = await axios.get('http://localhost:8080/admin/adminUsers');
+        const res = await axios.get('https://swinxter-test.onrender.com/admin/adminUsers');
         setUsers(res.data);
     }
 

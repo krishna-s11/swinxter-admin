@@ -34,12 +34,12 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8080/admin/login", details);
+            const res = await axios.post("https://swinxter-test.onrender.com/admin/login", details);
             setCurrentUser(res.data);
             navigate("/dashboard");
         } catch (error) {
-            console.log(error.response.data);
-            setInvalid(error.response.data);
+            console.log(error);
+            setInvalid(error?.response?.data);
         }
     }
 

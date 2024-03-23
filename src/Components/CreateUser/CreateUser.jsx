@@ -27,7 +27,7 @@ const CreateUser = ({close,refresh}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post("http://localhost:8080/admin/signup", details);
+        const res = await axios.post("https://swinxter-test.onrender.com/admin/signup", details);
         console.log(res.data);
         await refresh();
         close();
