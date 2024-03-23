@@ -2,14 +2,41 @@ import React, { useState } from 'react'
 import "./createUser.css";
 import userimg from "../../Assets/user-profile.png"
 import { IoMdCloseCircle } from "react-icons/io";
+import axios from "axios";
 
-const CreateUser = ({close}) => {
-    // const [img,setImg] = useState();
+const CreateUser = ({close,refresh}) => {
+  const [details, setDetails] = useState({
+    name: "",
+    username: "",
+    password: "",
+    events: false,
+    clubs: false,
+    situationships: false,
+    users: false,
+    admins: false,
+  });
 
-    // const handleImage = e => {
-    //     // setImg(e.target.files[0]);
-    //     console.log(e);
-    // }
+  const handleChange = e => {
+    setDetails({...details, [e.target.name]: e.target.value});
+  }
+
+  const handleRoles = e => {
+    setDetails({...details, [e.target.name]: e.target.checked});
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const res = await axios.post("http://localhost:8080/admin/signup", details);
+        console.log(res.data);
+        await refresh();
+        close();
+    } catch (error) {
+        console.log(error);   
+    }
+  }
+
+  console.log(details);
 
   return (
     <div className='createuser'>
@@ -24,33 +51,33 @@ const CreateUser = ({close}) => {
         <form>
             <div className='form_inputbox'>
                 <label for="name">Name: </label>
-                <input type='text' name="name" className='form_inputs' />
+                <input type='text' name="name" onChange={handleChange} className='form_inputs' />
             </div>
             <div className='form_inputbox'>
                 <label for="username">Username: </label>
-                <input type='name' name="username" className='form_inputs' />
+                <input type='name' name="username" onChange={handleChange} className='form_inputs' />
             </div>
             <div className='form_inputbox'>
                 <label for="password">Password: </label>
-                <input type='password' name="password" className='form_inputs' />
+                <input type='password' name="password" onChange={handleChange} className='form_inputs' />
             </div>
             <div className='form_inputbox'>
                 <label for="password">Grant Access: </label>
                 <div style={{marginTop: "10px", marginLeft: "5px"}}>
-                    <input type="checkbox" name="events" id="" />
+                    <input type="checkbox" name="events" onChange={handleRoles} id="" />
                     <label for="events" style={{marginLeft: "8px"}}>Events</label><br/><br/>
-                    <input type="checkbox" name="events" id="" />
+                    <input type="checkbox" name="clubs" onChange={handleRoles} id="" />
                     <label for="events" style={{marginLeft: "8px"}}>Clubs</label><br/><br/>
-                    <input type="checkbox" name="events" id="" />
+                    <input type="checkbox" name="situationships" onChange={handleRoles} id="" />
                     <label for="events" style={{marginLeft: "8px"}}>Situationship</label><br/><br/>
-                    <input type="checkbox" name="events" id="" />
+                    <input type="checkbox" name="users" id="" onChange={handleRoles} />
                     <label for="events" style={{marginLeft: "8px"}}>Users</label><br/><br/>
-                    <input type="checkbox" name="events" id="" />
+                    <input type="checkbox" name="admins" id="" onChange={handleRoles} />
                     <label for="events" style={{marginLeft: "8px"}}>Admin Users</label><br/><br/>
                 </div>
             </div>
             <div style={{width: "100%",marginTop: "10px", display: "flex", justifyContent: "center"}}>
-                <button className='btn_create_user'>Create User</button>
+                <button className='btn_create_user' onClick={handleSubmit}>Create User</button>
             </div>
         </form>
     </div>

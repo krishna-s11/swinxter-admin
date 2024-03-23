@@ -3,11 +3,13 @@ import "./table.css"
 import { useNavigate } from 'react-router'
 import DeleteCard from '../DeleteCard/DeleteCard';
 import ApproveCard from '../ApproveCard/ApproveCard';
+import axios from 'axios';
 
-const Table = ({data,type}) => {
+const Table = ({data,type,refresh}) => {
   const [deleteBox, setDeleteBox] = useState(false);
   const [approveBox, setApproveBox] = useState(false);
   const [actionType, setActionType] = useState("");
+  const [id,setId] = useState("");
   const navigate = useNavigate();
 
   if(type==="clubs"){
@@ -104,6 +106,58 @@ const Table = ({data,type}) => {
               <td>{d.isverify?"Yes":"No"}</td>
               <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
               <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
+            </tr>
+          )
+        })
+      }
+      </table>
+    )
+  }
+  if(type==="admins"){
+    const deleteUser = async (id) => {
+      try {
+        const res = await axios.delete(`http://localhost:8080/admin/delete_user/${id}`);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    return(
+      <table border={0}>
+        {
+          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType} deleteFN={() => {deleteUser(id); refresh();}}/> :null
+        }
+      <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Events</th>
+          <th>Clubs</th>
+          <th>Situationships</th>
+          <th>Users</th>
+          <th>Admins</th>
+          <th colSpan={2}>Action</th>
+      </tr>
+      {
+        data && data.map((d,i) => {
+          return(
+            <tr key={i}>
+              <td>{i+1}</td>
+              <td>{d.name}</td>
+              <td>{d.username}</td>
+              <td>{d.events?"Yes":"No"}</td>
+              <td>{d.clubs?"Yes":"No"}</td>
+              <td>{d.situationships?"Yes":"No"}</td>
+              <td>{d.users?"Yes":"No"}</td>
+              <td>{d.admins?"Yes":"No"}</td>
+              <td style={{color: "#22a6b3", cursor: "pointer"}}>Edit</td>
+              <td style={{color: "red", cursor:"pointer"}} onClick={() => {setId(d._id); setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
+              {/* <td>{d.locationto.display_name}</td> */}
+              {/* <td>{d.startDate}</td> */}
+              {/* <td>{d.isver/ify?"Yes":"No"}</td> */}
+              {/* <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td> */}
+              {/* <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td> */}
             </tr>
           )
         })

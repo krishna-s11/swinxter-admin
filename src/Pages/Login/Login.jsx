@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
 import "./login.css";
 import logo from "../../Assets/SwinxterLogo-bg.png"
 import { FaUser } from "react-icons/fa";
@@ -6,6 +6,8 @@ import { CiCircleInfo } from "react-icons/ci";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 
 
@@ -16,20 +18,32 @@ const Login = () => {
         username: "",
         password: "",
     })
-    const [invalid,setInvalid] = useState(false);
+    const [invalid,setInvalid] = useState("");
+    const {currentUser,setCurrentUser} = useContext(AuthContext);
 
     const handleChange = e => {
         setDetails({...details, [e.target.name]: e.target.value});
     }
 
-    const handleSubmit = e => {
+    useState(() => {
+        if(currentUser !== null){
+            navigate("/dashboard");
+        }
+    },[currentUser])
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if(details.username === "admin" && details.password === "admin12345")
-           navigate("/dashboard");
-        else{
-            setInvalid(true);
+        try {
+            const res = await axios.post("http://localhost:8080/admin/login", details);
+            setCurrentUser(res.data);
+            navigate("/dashboard");
+        } catch (error) {
+            console.log(error.response.data);
+            setInvalid(error.response.data);
         }
     }
+
+    console.log(currentUser)
 
   return (
     <div className='login'>
@@ -64,7 +78,7 @@ const Login = () => {
                 <div>
                     <input type="password" name="password" onChange={handleChange} id="" placeholder="password"/>
                 </div>
-                <p style={invalid?{textAlign: "center", marginBottom: "20px", color: "red"}:{display: "none"}}>Invalid Login Credentials</p>
+                <p style={invalid?{textAlign: "center", marginBottom: "20px", color: "red"}:{display: "none"}}>{invalid}</p>
                 <button className='btn_login' onClick={handleSubmit}>
                     <IoMdArrowRoundForward />
                 </button>
