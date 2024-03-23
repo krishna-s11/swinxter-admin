@@ -60,7 +60,7 @@ const Table = ({data,type,refresh}) => {
           <th colSpan={2}>Action</th>
       </tr>
       {
-        data && data.data.map((d,i) => {
+        data && data.map((d,i) => {
           return(
             <tr key={i}>
               <td>{i+1}</td>
