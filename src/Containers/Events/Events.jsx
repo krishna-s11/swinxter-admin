@@ -8,7 +8,7 @@ const Events = () => {
     const [events,setEvents] = useState();
 
     const fetchEvents = async () => {
-        const data = await axios.get("https://swinxter-test.onrender.com/api/events");
+        const data = await axios.get("https://swinxter-test.onrender.com/api/allevents");
         setEvents(data.data);
     }
 
