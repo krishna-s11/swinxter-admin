@@ -192,8 +192,8 @@ const Table = ({data,type,refresh}) => {
               <td>{d.resort}</td>
               <td>{d.locationto.display_name}</td>
               <td>{d.startDate}</td>
-              <td>{d.isverify?"Yes":"No"}</td>
-              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isverify?() => {setId(d._id);setActionType("suspension"); setDeleteBox(true)}:() => {setId(d._id);setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td>{d.isVerify?"Yes":"No"}</td>
+              <td style={d.isVerify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isVerify?() => {setId(d._id);setActionType("suspension"); setDeleteBox(true)}:() => {setId(d._id);setActionType("approval"); setDeleteBox(true)}}>{d.isVerify?"Suspend":"Approve"}</td>
               <td className='btn_view' onClick={() => {setId(d._id); setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
