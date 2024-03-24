@@ -24,7 +24,7 @@ const Clubs = () => {
                 <option>Filters</option>
             </select>
         </div>
-        <Table data={clubs} type="clubs" />
+        <Table data={clubs} type="clubs" refresh={fetchClubs}/>
     </div>
   )
 }

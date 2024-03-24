@@ -2,7 +2,7 @@ import React from 'react'
 import "./deleteCard.css";
 import warning from "../../Assets/warning-ico.png"
 
-const DeleteCard = ({close,type,deleteFN}) => {
+const DeleteCard = ({close,type,deleteFN,approve,suspend}) => {
   
   if(type === 'deletion') 
   return (
@@ -35,7 +35,7 @@ const DeleteCard = ({close,type,deleteFN}) => {
             </div>
             <div className='dl-action-box'>
                 <button className='btn btn-cancel' onClick={close}>Cancel</button>
-                <button className='btn btn-delete'>Suspend</button>
+                <button className='btn btn-delete' onClick={async () => {await suspend(); close();}}>Suspend</button>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@ const DeleteCard = ({close,type,deleteFN}) => {
             </div>
             <div className='dl-action-box'>
                 <button className='btn btn-cancel' onClick={close}>Cancel</button>
-                <button className='btn btn-approve'>Approve</button>
+                <button className='btn btn-approve' onClick={async () => {await approve(); close()}}>Approve</button>
             </div>
         </div>
     </div>

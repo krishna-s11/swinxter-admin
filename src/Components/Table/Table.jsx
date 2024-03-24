@@ -13,10 +13,40 @@ const Table = ({data,type,refresh}) => {
   const navigate = useNavigate();
 
   if(type==="clubs"){
+
+    const approve = async () => {
+      try {
+        const res = await axios.put(`https://swinxter-test.onrender.com/api/approve_club/${id}`);
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const suspend = async () => {
+      try {
+        const res = await axios.put(`https://swinxter-test.onrender.com/api/approve_club/${id}`, {suspend: true});
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const deleteFn = async () => {
+      try {
+        const res = await axios.delete(`https://swinxter-test.onrender.com/api/delete_club/${id}`);
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     return(
       <table border={0}>
         {
-          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+         deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} deleteFN={deleteFn} type={actionType} approve={approve} suspend={suspend}/> :null
         }
       <tr>
           <th></th>
@@ -35,8 +65,8 @@ const Table = ({data,type,refresh}) => {
               <td>{d.owner_name}</td>
               <td>{d.clubtype}</td>
               <td>{d.isverify?"Yes":"No"}</td>
-              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'  onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
-              <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
+              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'  onClick={d.isverify?() => {setId(d._id); setActionType("suspension"); setDeleteBox(true)}:() => {setId(d._id); setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view' onClick={() => {setId(d._id); setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
         })
@@ -45,10 +75,40 @@ const Table = ({data,type,refresh}) => {
     )
   }
   if(type==="events"){
+
+    const approve = async () => {
+      try {
+        const res = await axios.post(`https://swinxter-test.onrender.com/api/approve_event/${id}`);
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const suspend = async () => {
+      try {
+        const res = await axios.post(`https://swinxter-test.onrender.com/api/approve_event/${id}`, {suspend: true});
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const deleteFn = async () => {
+      try {
+        const res = await axios.delete(`https://swinxter-test.onrender.com/api/delete_event/${id}`);
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     return(
       <table border={0}>
         {
-          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} deleteFN={deleteFn} type={actionType} approve={approve} suspend={suspend}/> :null
         }
       <tr>
           <th></th>
@@ -70,8 +130,8 @@ const Table = ({data,type,refresh}) => {
               <td>{d.Startdate.split("T")[0]} - {d.EndDate.split("T")[0]}</td>
               <td>{d.isverify?"Yes":"No"}</td>
               <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action'
-              onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
-              <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
+              onClick={d.isverify?() => {setId(d._id);setActionType("suspension"); setDeleteBox(true)}:() => {setId(d._id); setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view' onClick={() => {setId(d._id);setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
         })
@@ -80,10 +140,39 @@ const Table = ({data,type,refresh}) => {
     )
   }
   if(type==="situationship"){
+
+    const approve = async () => {
+      try {
+        const res = await axios.put(`https://swinxter-test.onrender.com/api/approve_travel/${id}`);
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const suspend = async () => {
+      try {
+        const res = await axios.put(`https://swinxter-test.onrender.com/api/approve_travel/${id}`, {suspend: true});
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const deleteFn = async () => {
+      try {
+        const res = await axios.delete(`https://swinxter-test.onrender.com/api/delete_travel/${id}`);
+        console.log(res);
+        refresh();
+      } catch (error) {
+        console.log(error);
+      }
+    }
     return(
       <table border={0}>
         {
-          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} type={actionType}/> :null
+          deleteBox?<DeleteCard close={() => {setDeleteBox(false)}} deleteFN={deleteFn} type={actionType} approve={approve} suspend={suspend}/> :null
         }
       <tr>
           <th></th>
@@ -104,8 +193,8 @@ const Table = ({data,type,refresh}) => {
               <td>{d.locationto.display_name}</td>
               <td>{d.startDate}</td>
               <td>{d.isverify?"Yes":"No"}</td>
-              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isverify?() => {setActionType("suspension"); setDeleteBox(true)}:() => {setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
-              <td className='btn_view' onClick={() => {setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
+              <td style={d.isverify?{color: "red"}:{color: "#22a6b3"}} className='btn_action' onClick={d.isverify?() => {setId(d._id);setActionType("suspension"); setDeleteBox(true)}:() => {setId(d._id);setActionType("approval"); setDeleteBox(true)}}>{d.isverify?"Suspend":"Approve"}</td>
+              <td className='btn_view' onClick={() => {setId(d._id); setActionType("deletion"); setDeleteBox(true)}}>Delete</td>
             </tr>
           )
         })

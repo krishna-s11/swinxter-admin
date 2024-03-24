@@ -24,7 +24,7 @@ const Situationship = () => {
                 <option>Filters</option>
             </select>
         </div>
-        <Table data={data} type="situationship" />
+        <Table data={data} type="situationship"  refresh={fetchData}/>
     </div>
   )
 }

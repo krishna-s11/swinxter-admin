@@ -32,7 +32,7 @@ const Events = () => {
                 <option>Filters</option>
             </select>
         </div>
-        <Table data={filteredEvents} type="events" />
+        <Table data={filteredEvents} type="events" refresh={fetchEvents} />
     </div>
   )
 }
