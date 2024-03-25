@@ -113,7 +113,7 @@ const Table = ({data,type,refresh}) => {
       <tr>
           <th></th>
           <th>Name</th>
-          <th>Host</th>
+          {/* <th>Host</th> */}
           <th>Type</th>
           <th>Dates</th>
           <th>Verfied</th>
@@ -125,7 +125,7 @@ const Table = ({data,type,refresh}) => {
             <tr key={i}>
               <td>{i+1}</td>
               <td style={{cursor: "pointer", textDecoration: "underline"}} onClick={() => {navigate(`/dashboard?type=details?pg=event?id=${d._id}`)}} >{d.eventName}</td>
-              <td>{d.userId?.username}</td>
+              {/* <td>{d.userId?.username}</td> */}
               <td>{d.type}</td>
               <td>{d.Startdate.split("T")[0]} - {d.EndDate.split("T")[0]}</td>
               <td>{d.isverify?"Yes":"No"}</td>

@@ -15,6 +15,7 @@ const EventDetails = () => {
     console.log(type);
     if(type==='event'){
     const res = await axios.get(`https://swinxter-test.onrender.com/api/get_event/${id}`);
+    console.log(res.data)
     setEvent(res.data);
     }
     else if(type==='club'){
@@ -31,7 +32,7 @@ const EventDetails = () => {
     getData();
   },[])
 
-  console.log(situationship);
+  console.log(event);
 
   return (
     <div className='event_details_pg'>
